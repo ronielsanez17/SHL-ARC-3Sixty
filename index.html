@@ -1,0 +1,2460 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--projecttitle--><title>New project</title><!--projecttitle-end-->
+		<!--projectdescription--><meta name="description" content="New 3Sixty Virtual Tour Project"><!--projectdescription-end-->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+		
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<!-- Insert this line above script imports  -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		
+		<script src="imagedata.js"></script>
+		<script src="jquery.js"></script>
+		<script src="three.min.js"></script>
+		<script src="panolens.min.js"></script>
+		
+		<!-- Insert this line after script imports -->
+		<script>if (window.module) module = window.module;</script>
+		
+		<style>
+		
+			
+						
+			/* SCROLLBAR STYLING */
+			/* width */
+			::-webkit-scrollbar {
+				width: 0.25em;
+				height: 0.25em;
+			}
+			/* Track */
+			::-webkit-scrollbar-track {
+				background: #2c3643; 
+			}
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				background: #0d9e59; 
+				transition: background .5s;
+			}
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+				background: #00e075; 
+			}
+
+
+			html, body {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background-color: #000;
+				color; black;
+			}
+
+			a:link, a:visited{
+				color: #bdc3c7;	
+			}
+
+			.fullwrapper{
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: black;
+			}
+			
+			#container {
+                width: 100%;
+                height: 100%;
+            }
+			
+			#tmp{
+				position: fixed;
+				top: 0;
+				left: 0; 
+				right: 0;
+				bottom: 0;
+				padding: 3em;
+				background-color: rgba(0,0,0,.5);
+				backdrop-filter: blur(5px);
+				display: none;
+			}
+		</style>
+	</head>
+	<body id="body">
+	    <div id="container" style="color: black;"></div>
+    	
+		
+		
+		<!--customhtml--><div class='customhotspot' id='one'></div><div class='customhotspot' id='two'></div><div class='customhotspot' id='three'></div><div class='customhotspot' id='four'></div><div class='customhotspot' id='five'></div><div class='customhotspot' id='six'></div><div class='customhotspot' id='seven'></div><div class='customhotspot' id='eight'></div><div class='customhotspot' id='nine'></div><div class='customhotspot' id='ten'></div><div class='customhotspot' id='eleven'></div><div class='customhotspot' id='twelve'></div><div class='customhotspot' id='thirteen'></div><div class='customhotspot' id='fourteen'></div><div class='customhotspot' id='fifthteen'></div><div class='customhotspot' id='sixteen'></div><div class='customhotspot' id='seventeen'></div><div class='customhotspot' id='eighteen'></div><div class='customhotspot' id='nineteen'></div><div class='customhotspot' id='twenty'></div><div class='customhotspot' id='twentyone'></div><div class='customhotspot' id='twentytwo'></div><div class='customhotspot' id='Twentythree'></div><div class='customhotspot' id='Twentyfour'></div><div class='customhotspot' id='Twentyfive'></div><div class='customhotspot' id='Twentysix'></div><div class='customhotspot' id='Twentyseven'></div><div class='customhotspot' id='Twentyeight'></div><div class='customhotspot' id='Twentynine'></div><div class='customhotspot' id='Thirty'></div><div class='customhotspot' id='Thirtyone'></div><div class='customhotspot' id='Thirtytwo'></div><div class='customhotspot' id='Thirtythree'></div><div class='customhotspot' id='Thirtyfour'></div><div class='customhotspot' id='Thirtyfive'></div><div class='customhotspot' id='Thirtysix'></div><div class='customhotspot' id='Thirtyseven'></div><div class='customhotspot' id='Thirtyeight'></div><div class='customhotspot' id='Thirtynine'></div><div class='customhotspot' id='Forty'></div><div class='customhotspot' id='Fortyone'></div><div class='customhotspot' id='Fortytwo'></div><div class='customhotspot' id='Fortythree'></div><div class='customhotspot' id='Fortyfour'></div><div class='customhotspot' id='Fortyfive'></div><div class='customhotspot' id='Fortysix'></div><div class='customhotspot' id='Fortyseven'></div><div class='customhotspot' id='Fortyeight'></div><div class='customhotspot' id='Fortynine'></div><div class='customhotspot' id='fifty'></div><div class='customhotspot' id='Fiftyone'></div><div class='customhotspot' id='Fiftytwo'></div><div class='customhotspot' id='Fiftythree'></div><div class='customhotspot' id='Fiftyfive'></div><div class='customhotspot' id='Fiftysix'></div><div class='customhotspot' id='Fiftyseven'></div><div class='customhotspot' id='Fiftyeight'></div><div class='customhotspot' id='Fiftynine'></div><div class='customhotspot' id='Sixty'></div><div class='customhotspot' id='Sixtyone'></div><div class='customhotspot' id='Sixtytwo'></div><div class='customhotspot' id='Sixtythree'></div><div class='customhotspot' id='Sixtyfour'></div><div class='customhotspot' id='Sixtyfive'></div><div class='customhotspot' id='Sixtysix'></div><div class='customhotspot' id='Sixtyseven'></div><div class='customhotspot' id='Sixtyeight'></div><div class='customhotspot' id='Sixtynine'></div><div class='customhotspot' id='Seventy'></div><div class='customhotspot' id='Seventyone'></div><div class='customhotspot' id='Seventytwo'></div><div class='customhotspot' id='Seventythree'></div><div class='customhotspot' id='Seventyfour'></div><div class='customhotspot' id='Seventyfive'></div><div class='customhotspot' id='Seventysix'></div><div class='customhotspot' id='Seventyseven'></div><div class='customhotspot' id='Seventyeight'></div><div class='customhotspot' id='Seventynine'></div><div class='customhotspot' id='Eighty'></div><div class='customhotspot' id='Eightyone'></div><div class='customhotspot' id='Eightytwo'></div><div class='customhotspot' id='Eightythree'></div><div class='customhotspot' id='Eightyfour'></div><div class='customhotspot' id='Eightyfive'></div><div class='customhotspot' id='Eightysix'></div><div class='customhotspot' id='Eightyseven'></div><div class='customhotspot' id='Eightyeight'></div><div class='customhotspot' id='Eightynine'></div><div class='customhotspot' id='Ninety'></div><div class='customhotspot' id='Ninetyone'></div><div class='customhotspot' id='Ninetytwo'></div><div class='customhotspot' id='Ninetythree'></div><div class='customhotspot' id='Ninetyfour'></div><div class='customhotspot' id='Ninetyfive'></div><div class='customhotspot' id='Ninetysix'></div><div class='customhotspot' id='Ninetyseven'></div><div class='customhotspot' id='Ninetyeight'></div><div class='customhotspot' id='Ninetynine'></div><div class='customhotspot' id='Onehundred'></div><div class='customhotspot' id='Onehundredone'></div><div class='customhotspot' id='oneone'></div><div class='customhotspot' id='onetwo'></div><div class='customhotspot' id='onethree'></div><div class='customhotspot' id='onefour'></div><div class='customhotspot' id='onefive'></div><div class='customhotspot' id='onesix'></div><div class='customhotspot' id='oneseven'></div><!--customhtml-end-->
+		
+		<div id="tmp">
+			<div style="width: 100%; height: 100%; overflow: hidden; overflow-y: auto; box-sizing: border-box; position: relative;" id="tmpcontent"></div>
+			<div class="mediaclosebutton" onclick="hideTemp()"><i class="fa fa-times-circle"></i></div>
+		</div>
+
+		<div id="loading" class="fullwrapper" style="display: table; width: 100%; height: 100%;">
+    		<div style="display: table-cell; vertical-align: middle; text-align: center; color: white; font-size: 30px; padding: 50px;">
+    			<!--loadingtext-->Loading...<!--loadingtext-end-->
+    		</div>
+    	</div>
+		
+    	<script>
+			
+            var container = document.querySelector( '#container' );
+			/*panolens*/
+var viewer = new PANOLENS.Viewer( { container: container , controlBar: false,  output: 'console' , autoHideInfospot: false, } );
+/*panolens-end*/
+			
+			viewer.addUpdateCallback(function(){});
+			
+			/*panoramas*/
+var one = new PANOLENS.ImagePanorama( "panoramas/one.jpg" );
+			one.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			one.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			one.addEventListener('click', function(e){
+			});
+
+var infospotone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotone0.position.set( -4794.09, -1368.73, -208.51 );
+					one.add(infospotone0);
+infospotone0.addEventListener('click', function(){
+ChangePanorama('two');
+});
+viewer.add( one );
+var two = new PANOLENS.ImagePanorama( "panoramas/two.jpg" );
+			two.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			two.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			two.addEventListener('click', function(e){
+			});
+
+var infospottwo0 = new PANOLENS.Infospot( 512, hotspotIcons[7].data, true );
+					infospottwo0.position.set( -4393.23, -2298.57, -599.48 );
+					two.add(infospottwo0);
+infospottwo0.addEventListener('click', function(){
+ChangePanorama('three');
+});
+viewer.add( two );
+var three = new PANOLENS.ImagePanorama( "panoramas/three.jpg" );
+			three.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			three.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			three.addEventListener('click', function(e){
+			});
+
+var infospotthree0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotthree0.position.set( -384.13, 46.43, -4978.04 );
+					three.add(infospotthree0);
+infospotthree0.addEventListener('click', function(){
+ChangePanorama('four');
+});
+viewer.add( three );
+var four = new PANOLENS.ImagePanorama( "panoramas/four.jpg" );
+			four.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			four.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			four.addEventListener('click', function(e){
+			});
+
+var infospotfour0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotfour0.position.set( -4872.93, -1095.96, -58.98 );
+					four.add(infospotfour0);
+infospotfour0.addEventListener('click', function(){
+ChangePanorama('five');
+});
+viewer.add( four );
+var five = new PANOLENS.ImagePanorama( "panoramas/five.jpg" );
+			five.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			five.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			five.addEventListener('click', function(e){
+			});
+
+var infospotfive0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotfive0.position.set( -4127.43, -2804.72, 139.69 );
+					five.add(infospotfive0);
+infospotfive0.addEventListener('click', function(){
+ChangePanorama('six');
+});
+viewer.add( five );
+var six = new PANOLENS.ImagePanorama( "panoramas/six.jpg" );
+			six.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			six.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			six.addEventListener('click', function(e){
+			});
+
+var infospotsix0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotsix0.position.set( -4426.59, -2313.60, 76.18 );
+					six.add(infospotsix0);
+infospotsix0.addEventListener('click', function(){
+ChangePanorama('seven');
+});
+viewer.add( six );
+var seven = new PANOLENS.ImagePanorama( "panoramas/seven.jpg" );
+			seven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			seven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			seven.addEventListener('click', function(e){
+			});
+
+var infospotseven0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotseven0.position.set( -4240.45, -2637.42, 116.35 );
+					seven.add(infospotseven0);
+infospotseven0.addEventListener('click', function(){
+ChangePanorama('eight');
+});
+viewer.add( seven );
+var eight = new PANOLENS.ImagePanorama( "panoramas/eight.jpg" );
+			eight.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			eight.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			eight.addEventListener('click', function(e){
+			});
+
+var infospoteight0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospoteight0.position.set( -2011.70, -1872.27, -4169.36 );
+					eight.add(infospoteight0);
+infospoteight0.addEventListener('click', function(){
+ChangePanorama('nine');
+});
+viewer.add( eight );
+var nine = new PANOLENS.ImagePanorama( "panoramas/nine.jpg" );
+			nine.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			nine.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			nine.addEventListener('click', function(e){
+			});
+
+var infospotnine0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotnine0.position.set( -4737.16, -1551.21, -302.63 );
+					nine.add(infospotnine0);
+infospotnine0.addEventListener('click', function(){
+ChangePanorama('ten');
+});
+viewer.add( nine );
+var ten = new PANOLENS.ImagePanorama( "panoramas/ten.jpg" );
+			ten.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			ten.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			ten.addEventListener('click', function(e){
+			});
+
+var infospotten0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotten0.position.set( -4605.19, -1830.09, -609.02 );
+					ten.add(infospotten0);
+infospotten0.addEventListener('click', function(){
+ChangePanorama('eleven');
+});
+viewer.add( ten );
+var eleven = new PANOLENS.ImagePanorama( "panoramas/eleven.jpg" );
+			eleven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			eleven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			eleven.addEventListener('click', function(e){
+			});
+
+var infospoteleven0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospoteleven0.position.set( 3771.47, -791.17, 3176.29 );
+					eleven.add(infospoteleven0);
+infospoteleven0.addEventListener('click', function(){
+ChangePanorama('twelve');
+});
+viewer.add( eleven );
+var twelve = new PANOLENS.ImagePanorama( "panoramas/twelve.jpg" );
+			twelve.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			twelve.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			twelve.addEventListener('click', function(e){
+			});
+
+var infospottwelve0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospottwelve0.position.set( -4495.64, -2176.97, 43.16 );
+					twelve.add(infospottwelve0);
+infospottwelve0.addEventListener('click', function(){
+ChangePanorama('thirteen');
+});
+viewer.add( twelve );
+var thirteen = new PANOLENS.ImagePanorama( "panoramas/thirteen.jpg" );
+			thirteen.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			thirteen.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			thirteen.addEventListener('click', function(e){
+			});
+
+var infospotthirteen0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotthirteen0.position.set( -4813.27, -1295.88, 234.56 );
+					thirteen.add(infospotthirteen0);
+infospotthirteen0.addEventListener('click', function(){
+ChangePanorama('fourteen');
+});
+viewer.add( thirteen );
+var fourteen = new PANOLENS.ImagePanorama( "panoramas/fourteen.jpg" );
+			fourteen.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			fourteen.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			fourteen.addEventListener('click', function(e){
+			});
+
+var infospotfourteen0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotfourteen0.position.set( -2527.35, -1933.13, -3848.35 );
+					fourteen.add(infospotfourteen0);
+infospotfourteen0.addEventListener('click', function(){
+ChangePanorama('fifthteen');
+});
+viewer.add( fourteen );
+var fifthteen = new PANOLENS.ImagePanorama( "panoramas/fifthteen.jpg" );
+			fifthteen.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			fifthteen.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			fifthteen.addEventListener('click', function(e){
+			});
+
+var infospotfifthteen0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotfifthteen0.position.set( 1582.40, -2323.46, 4125.96 );
+					fifthteen.add(infospotfifthteen0);
+infospotfifthteen0.addEventListener('click', function(){
+ChangePanorama('sixteen');
+});
+viewer.add( fifthteen );
+var sixteen = new PANOLENS.ImagePanorama( "panoramas/sixteen.jpg" );
+			sixteen.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			sixteen.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			sixteen.addEventListener('click', function(e){
+			});
+
+var infospotsixteen0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotsixteen0.position.set( 4274.24, -1849.88, -1802.98 );
+					sixteen.add(infospotsixteen0);
+infospotsixteen0.addEventListener('click', function(){
+ChangePanorama('seventeen');
+});
+viewer.add( sixteen );
+var seventeen = new PANOLENS.ImagePanorama( "panoramas/seventeen.jpg" );
+			seventeen.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			seventeen.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			seventeen.addEventListener('click', function(e){
+			});
+
+var infospotseventeen0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotseventeen0.position.set( 4480.39, -1899.21, -1122.70 );
+					seventeen.add(infospotseventeen0);
+infospotseventeen0.addEventListener('click', function(){
+ChangePanorama('eighteen');
+});
+viewer.add( seventeen );
+var eighteen = new PANOLENS.ImagePanorama( "panoramas/eighteen.jpg" );
+			eighteen.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			eighteen.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			eighteen.addEventListener('click', function(e){
+			});
+
+var infospoteighteen0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospoteighteen0.position.set( 4720.75, -1631.41, -51.34 );
+					eighteen.add(infospoteighteen0);
+infospoteighteen0.addEventListener('click', function(){
+ChangePanorama('nineteen');
+});
+viewer.add( eighteen );
+var nineteen = new PANOLENS.ImagePanorama( "panoramas/nineteen.jpg" );
+			nineteen.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			nineteen.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			nineteen.addEventListener('click', function(e){
+			});
+
+var infospotnineteen0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotnineteen0.position.set( 158.41, -1145.63, -4857.84 );
+					nineteen.add(infospotnineteen0);
+infospotnineteen0.addEventListener('click', function(){
+ChangePanorama('twenty');
+});
+var infospotnineteen1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotnineteen1.position.set( -4704.29, -1658.07, 177.57 );
+					nineteen.add(infospotnineteen1);
+infospotnineteen1.addEventListener('click', function(){
+ChangePanorama('twentyone');
+});
+viewer.add( nineteen );
+var twenty = new PANOLENS.ImagePanorama( "panoramas/twenty.jpg" );
+			twenty.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			twenty.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			twenty.addEventListener('click', function(e){
+			});
+
+var infospottwenty0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospottwenty0.position.set( -4373.55, -710.08, 2298.14 );
+					twenty.add(infospottwenty0);
+infospottwenty0.addEventListener('click', function(){
+ChangePanorama('nineteen');
+});
+viewer.add( twenty );
+var twentyone = new PANOLENS.ImagePanorama( "panoramas/twentyone.jpg" );
+			twentyone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			twentyone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			twentyone.addEventListener('click', function(e){
+			});
+
+var infospottwentyone0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospottwentyone0.position.set( 705.32, -1418.42, 4732.37 );
+					twentyone.add(infospottwentyone0);
+infospottwentyone0.addEventListener('click', function(){
+ChangePanorama('twentytwo');
+});
+var infospottwentyone1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospottwentyone1.position.set( 4627.49, -1863.67, 195.71 );
+					twentyone.add(infospottwentyone1);
+infospottwentyone1.addEventListener('click', function(){
+ChangePanorama('Twentythree');
+});
+viewer.add( twentyone );
+var twentytwo = new PANOLENS.ImagePanorama( "panoramas/twentytwo.jpg" );
+			twentytwo.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			twentytwo.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			twentytwo.addEventListener('click', function(e){
+			});
+
+var infospottwentytwo0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospottwentytwo0.position.set( 4875.66, -862.12, -640.29 );
+					twentytwo.add(infospottwentytwo0);
+infospottwentytwo0.addEventListener('click', function(){
+ChangePanorama('twentyone');
+});
+viewer.add( twentytwo );
+var Twentythree = new PANOLENS.ImagePanorama( "panoramas/Twentythree.jpg" );
+			Twentythree.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Twentythree.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Twentythree.addEventListener('click', function(e){
+			});
+
+var infospotTwentythree0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentythree0.position.set( 200.70, -2018.80, 4560.30 );
+					Twentythree.add(infospotTwentythree0);
+infospotTwentythree0.addEventListener('click', function(){
+ChangePanorama('Twentyfour');
+});
+var infospotTwentythree1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentythree1.position.set( 4274.00, -2592.17, 11.21 );
+					Twentythree.add(infospotTwentythree1);
+infospotTwentythree1.addEventListener('click', function(){
+ChangePanorama('Twentysix');
+});
+viewer.add( Twentythree );
+var Twentyfour = new PANOLENS.ImagePanorama( "panoramas/Twentyfour.jpg" );
+			Twentyfour.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Twentyfour.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Twentyfour.addEventListener('click', function(e){
+			});
+
+var infospotTwentyfour0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentyfour0.position.set( 4787.36, -1402.00, -157.83 );
+					Twentyfour.add(infospotTwentyfour0);
+infospotTwentyfour0.addEventListener('click', function(){
+ChangePanorama('Twentyfive');
+});
+var infospotTwentyfour1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentyfour1.position.set( 51.90, -2589.45, -4273.38 );
+					Twentyfour.add(infospotTwentyfour1);
+infospotTwentyfour1.addEventListener('click', function(){
+ChangePanorama('Twentythree');
+});
+viewer.add( Twentyfour );
+var Twentyfive = new PANOLENS.ImagePanorama( "panoramas/Twentyfive.jpg" );
+			Twentyfive.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Twentyfive.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Twentyfive.addEventListener('click', function(e){
+			});
+
+var infospotTwentyfive0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentyfive0.position.set( -477.52, -3281.68, -3736.32 );
+					Twentyfive.add(infospotTwentyfive0);
+infospotTwentyfive0.addEventListener('click', function(){
+ChangePanorama('Twentysix');
+});
+var infospotTwentyfive1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentyfive1.position.set( 40.86, -3141.59, 3883.17 );
+					Twentyfive.add(infospotTwentyfive1);
+infospotTwentyfive1.addEventListener('click', function(){
+ChangePanorama('Twentyseven');
+});
+var infospotTwentyfive2 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentyfive2.position.set( 4750.18, -1541.43, -117.10 );
+					Twentyfive.add(infospotTwentyfive2);
+infospotTwentyfive2.addEventListener('click', function(){
+ChangePanorama('Twentynine');
+});
+viewer.add( Twentyfive );
+var Twentysix = new PANOLENS.ImagePanorama( "panoramas/Twentysix.jpg" );
+			Twentysix.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Twentysix.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Twentysix.addEventListener('click', function(e){
+			});
+
+var infospotTwentysix0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentysix0.position.set( -83.33, -1825.69, 4647.39 );
+					Twentysix.add(infospotTwentysix0);
+infospotTwentysix0.addEventListener('click', function(){
+ChangePanorama('Twentyfive');
+});
+var infospotTwentysix1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentysix1.position.set( 4605.83, -1922.92, 175.22 );
+					Twentysix.add(infospotTwentysix1);
+infospotTwentysix1.addEventListener('click', function(){
+ChangePanorama('Twentyeight');
+});
+viewer.add( Twentysix );
+var Twentyseven = new PANOLENS.ImagePanorama( "panoramas/Twentyseven.jpg" );
+			Twentyseven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Twentyseven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Twentyseven.addEventListener('click', function(e){
+			});
+
+var infospotTwentyseven0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentyseven0.position.set( -581.30, -2613.75, -4217.51 );
+					Twentyseven.add(infospotTwentyseven0);
+infospotTwentyseven0.addEventListener('click', function(){
+ChangePanorama('Twentyfive');
+});
+var infospotTwentyseven1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentyseven1.position.set( 4267.27, -2574.50, 328.35 );
+					Twentyseven.add(infospotTwentyseven1);
+infospotTwentyseven1.addEventListener('click', function(){
+ChangePanorama('Thirtytwo');
+});
+viewer.add( Twentyseven );
+var Twentyeight = new PANOLENS.ImagePanorama( "panoramas/Twentyeight.jpg" );
+			Twentyeight.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Twentyeight.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Twentyeight.addEventListener('click', function(e){
+			});
+
+var infospotTwentyeight0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentyeight0.position.set( -88.43, -1665.87, -4706.09 );
+					Twentyeight.add(infospotTwentyeight0);
+infospotTwentyeight0.addEventListener('click', function(){
+ChangePanorama('Thirty');
+});
+var infospotTwentyeight1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentyeight1.position.set( 4624.93, -1896.85, 10.99 );
+					Twentyeight.add(infospotTwentyeight1);
+infospotTwentyeight1.addEventListener('click', function(){
+ChangePanorama('Twentynine');
+});
+viewer.add( Twentyeight );
+var Twentynine = new PANOLENS.ImagePanorama( "panoramas/Twentynine.jpg" );
+			Twentynine.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Twentynine.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Twentynine.addEventListener('click', function(e){
+			});
+
+var infospotTwentynine0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentynine0.position.set( 58.09, -2048.59, -4554.04 );
+					Twentynine.add(infospotTwentynine0);
+infospotTwentynine0.addEventListener('click', function(){
+ChangePanorama('Thirtyone');
+});
+var infospotTwentynine1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentynine1.position.set( 3939.86, -3063.70, 130.89 );
+					Twentynine.add(infospotTwentynine1);
+infospotTwentynine1.addEventListener('click', function(){
+ChangePanorama('Twentyeight');
+});
+var infospotTwentynine2 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotTwentynine2.position.set( -3997.05, -2983.26, 249.73 );
+					Twentynine.add(infospotTwentynine2);
+infospotTwentynine2.addEventListener('click', function(){
+ChangePanorama('Thirty');
+});
+viewer.add( Twentynine );
+var Thirty = new PANOLENS.ImagePanorama( "panoramas/Thirty.jpg" );
+			Thirty.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirty.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirty.addEventListener('click', function(e){
+			});
+
+var infospotThirty0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirty0.position.set( -206.32, -1612.86, -4719.47 );
+					Thirty.add(infospotThirty0);
+infospotThirty0.addEventListener('click', function(){
+ChangePanorama('Thirtyfive');
+});
+var infospotThirty1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirty1.position.set( 4469.07, -2237.92, -13.91 );
+					Thirty.add(infospotThirty1);
+infospotThirty1.addEventListener('click', function(){
+ChangePanorama('Twentynine');
+});
+viewer.add( Thirty );
+var Thirtyone = new PANOLENS.ImagePanorama( "panoramas/Thirtyone.jpg" );
+			Thirtyone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirtyone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirtyone.addEventListener('click', function(e){
+			});
+
+var infospotThirtyone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtyone0.position.set( -4742.01, -1546.06, 246.39 );
+					Thirtyone.add(infospotThirtyone0);
+infospotThirtyone0.addEventListener('click', function(){
+ChangePanorama('Thirtyfour');
+});
+var infospotThirtyone1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtyone1.position.set( 96.74, -3189.69, -3842.33 );
+					Thirtyone.add(infospotThirtyone1);
+infospotThirtyone1.addEventListener('click', function(){
+ChangePanorama('Thirtytwo');
+});
+var infospotThirtyone2 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtyone2.position.set( 318.82, -3340.43, 3699.17 );
+					Thirtyone.add(infospotThirtyone2);
+infospotThirtyone2.addEventListener('click', function(){
+ChangePanorama('Thirty');
+});
+viewer.add( Thirtyone );
+var Thirtytwo = new PANOLENS.ImagePanorama( "panoramas/Thirtytwo.jpg" );
+			Thirtytwo.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirtytwo.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirtytwo.addEventListener('click', function(e){
+			});
+
+var infospotThirtytwo0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtytwo0.position.set( -4273.34, -2591.39, -32.06 );
+					Thirtytwo.add(infospotThirtytwo0);
+infospotThirtytwo0.addEventListener('click', function(){
+ChangePanorama('Thirtyeight');
+});
+var infospotThirtytwo1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtytwo1.position.set( 56.31, -2521.73, 4311.08 );
+					Thirtytwo.add(infospotThirtytwo1);
+infospotThirtytwo1.addEventListener('click', function(){
+ChangePanorama('Thirtyone');
+});
+viewer.add( Thirtytwo );
+var Thirtythree = new PANOLENS.ImagePanorama( "panoramas/Thirtythree.jpg" );
+			Thirtythree.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirtythree.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirtythree.addEventListener('click', function(e){
+			});
+
+viewer.add( Thirtythree );
+var Thirtyfour = new PANOLENS.ImagePanorama( "panoramas/Thirtyfour.jpg" );
+			Thirtyfour.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirtyfour.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirtyfour.addEventListener('click', function(e){
+			});
+
+var infospotThirtyfour0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtyfour0.position.set( -4719.57, -1633.20, -61.19 );
+					Thirtyfour.add(infospotThirtyfour0);
+infospotThirtyfour0.addEventListener('click', function(){
+ChangePanorama('Forty');
+});
+viewer.add( Thirtyfour );
+var Thirtyfive = new PANOLENS.ImagePanorama( "panoramas/Thirtyfive.jpg" );
+			Thirtyfive.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirtyfive.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirtyfive.addEventListener('click', function(e){
+			});
+
+var infospotThirtyfive0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtyfive0.position.set( -4762.98, -1511.03, -36.47 );
+					Thirtyfive.add(infospotThirtyfive0);
+infospotThirtyfive0.addEventListener('click', function(){
+ChangePanorama('Thirtysix');
+});
+viewer.add( Thirtyfive );
+var Thirtysix = new PANOLENS.ImagePanorama( "panoramas/Thirtysix.jpg" );
+			Thirtysix.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirtysix.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirtysix.addEventListener('click', function(e){
+			});
+
+var infospotThirtysix0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtysix0.position.set( -4743.78, -1557.40, -132.79 );
+					Thirtysix.add(infospotThirtysix0);
+infospotThirtysix0.addEventListener('click', function(){
+ChangePanorama('Fortyone');
+});
+viewer.add( Thirtysix );
+var Thirtyseven = new PANOLENS.ImagePanorama( "panoramas/Thirtyseven.jpg" );
+			Thirtyseven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirtyseven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirtyseven.addEventListener('click', function(e){
+			});
+
+viewer.add( Thirtyseven );
+var Thirtyeight = new PANOLENS.ImagePanorama( "panoramas/Thirtyeight.jpg" );
+			Thirtyeight.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirtyeight.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirtyeight.addEventListener('click', function(e){
+			});
+
+var infospotThirtyeight0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtyeight0.position.set( -3669.62, -3331.38, 605.41 );
+					Thirtyeight.add(infospotThirtyeight0);
+infospotThirtyeight0.addEventListener('click', function(){
+ChangePanorama('Thirtynine');
+});
+viewer.add( Thirtyeight );
+var Thirtynine = new PANOLENS.ImagePanorama( "panoramas/Thirtynine.jpg" );
+			Thirtynine.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Thirtynine.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Thirtynine.addEventListener('click', function(e){
+			});
+
+var infospotThirtynine0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotThirtynine0.position.set( -4130.77, -2772.06, -453.70 );
+					Thirtynine.add(infospotThirtynine0);
+infospotThirtynine0.addEventListener('click', function(){
+ChangePanorama('Fortyfour');
+});
+viewer.add( Thirtynine );
+var Forty = new PANOLENS.ImagePanorama( "panoramas/Forty.jpg" );
+			Forty.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Forty.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Forty.addEventListener('click', function(e){
+			});
+
+var infospotForty0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotForty0.position.set( -4731.10, -1594.29, -114.98 );
+					Forty.add(infospotForty0);
+infospotForty0.addEventListener('click', function(){
+ChangePanorama('Fortythree');
+});
+viewer.add( Forty );
+var Fortyone = new PANOLENS.ImagePanorama( "panoramas/Fortyone.jpg" );
+			Fortyone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fortyone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fortyone.addEventListener('click', function(e){
+			});
+
+var infospotFortyone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFortyone0.position.set( -4225.10, -2661.38, 103.74 );
+					Fortyone.add(infospotFortyone0);
+infospotFortyone0.addEventListener('click', function(){
+ChangePanorama('Fortytwo');
+});
+viewer.add( Fortyone );
+var Fortytwo = new PANOLENS.ImagePanorama( "panoramas/Fortytwo.jpg" );
+			Fortytwo.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fortytwo.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fortytwo.addEventListener('click', function(e){
+			});
+
+var infospotFortytwo0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFortytwo0.position.set( -4295.18, -2539.07, 174.47 );
+					Fortytwo.add(infospotFortytwo0);
+infospotFortytwo0.addEventListener('click', function(){
+ChangePanorama('Fortyseven');
+});
+viewer.add( Fortytwo );
+var Fortythree = new PANOLENS.ImagePanorama( "panoramas/Fortythree.jpg" );
+			Fortythree.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fortythree.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fortythree.addEventListener('click', function(e){
+			});
+
+var infospotFortythree0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFortythree0.position.set( -4798.30, -1361.94, -164.82 );
+					Fortythree.add(infospotFortythree0);
+infospotFortythree0.addEventListener('click', function(){
+ChangePanorama('Fortysix');
+});
+viewer.add( Fortythree );
+var Fortyfour = new PANOLENS.ImagePanorama( "panoramas/Fortyfour.jpg" );
+			Fortyfour.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fortyfour.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fortyfour.addEventListener('click', function(e){
+			});
+
+var infospotFortyfour0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFortyfour0.position.set( 4615.42, -1888.77, -249.37 );
+					Fortyfour.add(infospotFortyfour0);
+infospotFortyfour0.addEventListener('click', function(){
+ChangePanorama('Fortyfive');
+});
+viewer.add( Fortyfour );
+var Fortyfive = new PANOLENS.ImagePanorama( "panoramas/Fortyfive.jpg" );
+			Fortyfive.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fortyfive.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fortyfive.addEventListener('click', function(e){
+			});
+
+var infospotFortyfive0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFortyfive0.position.set( 4492.49, -2150.23, -338.34 );
+					Fortyfive.add(infospotFortyfive0);
+infospotFortyfive0.addEventListener('click', function(){
+ChangePanorama('fifty');
+});
+viewer.add( Fortyfive );
+var Fortysix = new PANOLENS.ImagePanorama( "panoramas/Fortysix.jpg" );
+			Fortysix.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fortysix.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fortysix.addEventListener('click', function(e){
+			});
+
+var infospotFortysix0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFortysix0.position.set( 4597.06, -1937.27, -216.40 );
+					Fortysix.add(infospotFortysix0);
+infospotFortysix0.addEventListener('click', function(){
+ChangePanorama('Fortynine');
+});
+viewer.add( Fortysix );
+var Fortyseven = new PANOLENS.ImagePanorama( "panoramas/Fortyseven.jpg" );
+			Fortyseven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fortyseven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fortyseven.addEventListener('click', function(e){
+			});
+
+var infospotFortyseven0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFortyseven0.position.set( 4526.18, -2024.69, -584.17 );
+					Fortyseven.add(infospotFortyseven0);
+infospotFortyseven0.addEventListener('click', function(){
+ChangePanorama('Fortyeight');
+});
+viewer.add( Fortyseven );
+var Fortyeight = new PANOLENS.ImagePanorama( "panoramas/Fortyeight.jpg" );
+			Fortyeight.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fortyeight.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fortyeight.addEventListener('click', function(e){
+			});
+
+var infospotFortyeight0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFortyeight0.position.set( 4466.31, -2241.92, -31.43 );
+					Fortyeight.add(infospotFortyeight0);
+infospotFortyeight0.addEventListener('click', function(){
+ChangePanorama('Fiftythree');
+});
+viewer.add( Fortyeight );
+var Fortynine = new PANOLENS.ImagePanorama( "panoramas/Fortynine.jpg" );
+			Fortynine.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fortynine.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fortynine.addEventListener('click', function(e){
+			});
+
+var infospotFortynine0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFortynine0.position.set( 4640.25, -1843.07, 97.42 );
+					Fortynine.add(infospotFortynine0);
+infospotFortynine0.addEventListener('click', function(){
+ChangePanorama('Fiftytwo');
+});
+viewer.add( Fortynine );
+var fifty = new PANOLENS.ImagePanorama( "panoramas/fifty.jpg" );
+			fifty.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			fifty.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			fifty.addEventListener('click', function(e){
+			});
+
+var infospotfifty0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotfifty0.position.set( 4485.10, -2159.40, -398.83 );
+					fifty.add(infospotfifty0);
+infospotfifty0.addEventListener('click', function(){
+ChangePanorama('Fiftyone');
+});
+viewer.add( fifty );
+var Fiftyone = new PANOLENS.ImagePanorama( "panoramas/Fiftyone.jpg" );
+			Fiftyone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fiftyone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fiftyone.addEventListener('click', function(e){
+			});
+
+var infospotFiftyone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFiftyone0.position.set( 4546.21, -2058.12, -123.68 );
+					Fiftyone.add(infospotFiftyone0);
+infospotFiftyone0.addEventListener('click', function(){
+ChangePanorama('Fiftysix');
+});
+viewer.add( Fiftyone );
+var Fiftytwo = new PANOLENS.ImagePanorama( "panoramas/Fiftytwo.jpg" );
+			Fiftytwo.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fiftytwo.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fiftytwo.addEventListener('click', function(e){
+			});
+
+var infospotFiftytwo0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFiftytwo0.position.set( 4319.01, -2485.56, 291.53 );
+					Fiftytwo.add(infospotFiftytwo0);
+infospotFiftytwo0.addEventListener('click', function(){
+ChangePanorama('Fiftysix');
+});
+viewer.add( Fiftytwo );
+var Fiftythree = new PANOLENS.ImagePanorama( "panoramas/Fiftythree.jpg" );
+			Fiftythree.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fiftythree.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fiftythree.addEventListener('click', function(e){
+			});
+
+var infospotFiftythree0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFiftythree0.position.set( 4637.25, -1855.64, 66.00 );
+					Fiftythree.add(infospotFiftythree0);
+infospotFiftythree0.addEventListener('click', function(){
+ChangePanorama('Fiftyseven');
+});
+viewer.add( Fiftythree );
+var Fiftyfive = new PANOLENS.ImagePanorama( "panoramas/Fiftyfive.jpg" );
+			Fiftyfive.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fiftyfive.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fiftyfive.addEventListener('click', function(e){
+			});
+
+viewer.add( Fiftyfive );
+var Fiftysix = new PANOLENS.ImagePanorama( "panoramas/Fiftysix.jpg" );
+			Fiftysix.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fiftysix.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fiftysix.addEventListener('click', function(e){
+			});
+
+var infospotFiftysix0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFiftysix0.position.set( 2089.97, -1524.38, -4271.31 );
+					Fiftysix.add(infospotFiftysix0);
+infospotFiftysix0.addEventListener('click', function(){
+ChangePanorama('Fiftyseven');
+});
+viewer.add( Fiftysix );
+var Fiftyseven = new PANOLENS.ImagePanorama( "panoramas/Fiftyseven.jpg" );
+			Fiftyseven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fiftyseven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fiftyseven.addEventListener('click', function(e){
+			});
+
+var infospotFiftyseven0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFiftyseven0.position.set( 3903.32, -679.32, 3035.62 );
+					Fiftyseven.add(infospotFiftyseven0);
+infospotFiftyseven0.addEventListener('click', function(){
+ChangePanorama('Fiftyeight');
+});
+var infospotFiftyseven1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFiftyseven1.position.set( -3227.55, -1579.83, -3470.12 );
+					Fiftyseven.add(infospotFiftyseven1);
+infospotFiftyseven1.addEventListener('click', function(){
+ChangePanorama('Fiftysix');
+});
+viewer.add( Fiftyseven );
+var Fiftyeight = new PANOLENS.ImagePanorama( "panoramas/Fiftyeight.jpg" );
+			Fiftyeight.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fiftyeight.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fiftyeight.addEventListener('click', function(e){
+			});
+
+var infospotFiftyeight0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFiftyeight0.position.set( 4947.37, -259.29, 616.99 );
+					Fiftyeight.add(infospotFiftyeight0);
+infospotFiftyeight0.addEventListener('click', function(){
+ChangePanorama('Fiftynine');
+});
+viewer.add( Fiftyeight );
+var Fiftynine = new PANOLENS.ImagePanorama( "panoramas/Fiftynine.jpg" );
+			Fiftynine.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Fiftynine.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Fiftynine.addEventListener('click', function(e){
+			});
+
+var infospotFiftynine0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFiftynine0.position.set( 2227.31, -2131.58, -3929.77 );
+					Fiftynine.add(infospotFiftynine0);
+infospotFiftynine0.addEventListener('click', function(){
+ChangePanorama('Sixty');
+});
+var infospotFiftynine1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotFiftynine1.position.set( 3946.77, -1550.09, 2638.23 );
+					Fiftynine.add(infospotFiftynine1);
+infospotFiftynine1.addEventListener('click', function(){
+ChangePanorama('Onehundredone');
+});
+viewer.add( Fiftynine );
+var Sixty = new PANOLENS.ImagePanorama( "panoramas/Sixty.jpg" );
+			Sixty.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixty.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixty.addEventListener('click', function(e){
+			});
+
+var infospotSixty0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixty0.position.set( -931.09, -1976.78, -4493.57 );
+					Sixty.add(infospotSixty0);
+infospotSixty0.addEventListener('click', function(){
+ChangePanorama('Fiftynine');
+});
+var infospotSixty1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixty1.position.set( -648.73, -1530.15, 4709.47 );
+					Sixty.add(infospotSixty1);
+infospotSixty1.addEventListener('click', function(){
+ChangePanorama('Sixtyone');
+});
+viewer.add( Sixty );
+var Sixtyone = new PANOLENS.ImagePanorama( "panoramas/Sixtyone.jpg" );
+			Sixtyone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixtyone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixtyone.addEventListener('click', function(e){
+			});
+
+var infospotSixtyone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtyone0.position.set( 231.92, -2560.37, 4280.24 );
+					Sixtyone.add(infospotSixtyone0);
+infospotSixtyone0.addEventListener('click', function(){
+ChangePanorama('Sixtytwo');
+});
+viewer.add( Sixtyone );
+var Sixtytwo = new PANOLENS.ImagePanorama( "panoramas/Sixtytwo.jpg" );
+			Sixtytwo.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixtytwo.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixtytwo.addEventListener('click', function(e){
+			});
+
+var infospotSixtytwo0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtytwo0.position.set( 233.77, -2701.09, 4191.75 );
+					Sixtytwo.add(infospotSixtytwo0);
+infospotSixtytwo0.addEventListener('click', function(){
+ChangePanorama('Sixtythree');
+});
+var infospotSixtytwo1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtytwo1.position.set( -4620.81, -1897.41, -85.83 );
+					Sixtytwo.add(infospotSixtytwo1);
+infospotSixtytwo1.addEventListener('click', function(){
+ChangePanorama('Sixtyfive');
+});
+viewer.add( Sixtytwo );
+var Sixtythree = new PANOLENS.ImagePanorama( "panoramas/Sixtythree.jpg" );
+			Sixtythree.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixtythree.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixtythree.addEventListener('click', function(e){
+			});
+
+var infospotSixtythree0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtythree0.position.set( -4741.37, -1573.67, -64.28 );
+					Sixtythree.add(infospotSixtythree0);
+infospotSixtythree0.addEventListener('click', function(){
+ChangePanorama('Sixtyseven');
+});
+viewer.add( Sixtythree );
+var Sixtyfour = new PANOLENS.ImagePanorama( "panoramas/Sixtyfour.jpg" );
+			Sixtyfour.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixtyfour.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixtyfour.addEventListener('click', function(e){
+			});
+
+var infospotSixtyfour0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtyfour0.position.set( -0.88, -2190.21, 4491.75 );
+					Sixtyfour.add(infospotSixtyfour0);
+infospotSixtyfour0.addEventListener('click', function(){
+});
+var infospotSixtyfour1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtyfour1.position.set( -3735.75, -3307.19, 207.27 );
+					Sixtyfour.add(infospotSixtyfour1);
+infospotSixtyfour1.addEventListener('click', function(){
+ChangePanorama('Sixtyfive');
+});
+viewer.add( Sixtyfour );
+var Sixtyfive = new PANOLENS.ImagePanorama( "panoramas/Sixtyfive.jpg" );
+			Sixtyfive.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixtyfive.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixtyfive.addEventListener('click', function(e){
+			});
+
+var infospotSixtyfive0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtyfive0.position.set( -4629.43, -1880.82, 37.99 );
+					Sixtyfive.add(infospotSixtyfive0);
+infospotSixtyfive0.addEventListener('click', function(){
+ChangePanorama('Sixtysix');
+});
+viewer.add( Sixtyfive );
+var Sixtysix = new PANOLENS.ImagePanorama( "panoramas/Sixtysix.jpg" );
+			Sixtysix.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixtysix.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixtysix.addEventListener('click', function(e){
+			});
+
+var infospotSixtysix0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtysix0.position.set( -4774.85, -1411.31, -346.54 );
+					Sixtysix.add(infospotSixtysix0);
+infospotSixtysix0.addEventListener('click', function(){
+ChangePanorama('Sixtyseven');
+});
+viewer.add( Sixtysix );
+var Sixtyseven = new PANOLENS.ImagePanorama( "panoramas/Sixtyseven.jpg" );
+			Sixtyseven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixtyseven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixtyseven.addEventListener('click', function(e){
+			});
+
+var infospotSixtyseven0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtyseven0.position.set( -4632.12, -1824.09, 386.07 );
+					Sixtyseven.add(infospotSixtyseven0);
+infospotSixtyseven0.addEventListener('click', function(){
+ChangePanorama('Sixtyeight');
+});
+viewer.add( Sixtyseven );
+var Sixtyeight = new PANOLENS.ImagePanorama( "panoramas/Sixtyeight.jpg" );
+			Sixtyeight.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixtyeight.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixtyeight.addEventListener('click', function(e){
+			});
+
+var infospotSixtyeight0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtyeight0.position.set( -3947.51, -3046.48, -244.02 );
+					Sixtyeight.add(infospotSixtyeight0);
+infospotSixtyeight0.addEventListener('click', function(){
+ChangePanorama('Sixtynine');
+});
+viewer.add( Sixtyeight );
+var Sixtynine = new PANOLENS.ImagePanorama( "panoramas/Sixtynine.jpg" );
+			Sixtynine.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Sixtynine.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Sixtynine.addEventListener('click', function(e){
+			});
+
+var infospotSixtynine0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSixtynine0.position.set( -193.69, -1699.87, -4688.03 );
+					Sixtynine.add(infospotSixtynine0);
+infospotSixtynine0.addEventListener('click', function(){
+ChangePanorama('Seventy');
+});
+viewer.add( Sixtynine );
+var Seventy = new PANOLENS.ImagePanorama( "panoramas/Seventy.jpg" );
+			Seventy.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventy.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventy.addEventListener('click', function(e){
+			});
+
+var infospotSeventy0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSeventy0.position.set( -4533.46, -2068.64, -274.34 );
+					Seventy.add(infospotSeventy0);
+infospotSeventy0.addEventListener('click', function(){
+ChangePanorama('Seventyone');
+});
+viewer.add( Seventy );
+var Seventyone = new PANOLENS.ImagePanorama( "panoramas/Seventyone.jpg" );
+			Seventyone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventyone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventyone.addEventListener('click', function(e){
+			});
+
+var infospotSeventyone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSeventyone0.position.set( -4481.50, -2149.50, 498.96 );
+					Seventyone.add(infospotSeventyone0);
+infospotSeventyone0.addEventListener('click', function(){
+ChangePanorama('Seventytwo');
+});
+viewer.add( Seventyone );
+var Seventytwo = new PANOLENS.ImagePanorama( "panoramas/Seventytwo.jpg" );
+			Seventytwo.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventytwo.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventytwo.addEventListener('click', function(e){
+			});
+
+var infospotSeventytwo0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSeventytwo0.position.set( -1876.30, -3270.16, -3281.50 );
+					Seventytwo.add(infospotSeventytwo0);
+infospotSeventytwo0.addEventListener('click', function(){
+ChangePanorama('Seventythree');
+});
+viewer.add( Seventytwo );
+var Seventythree = new PANOLENS.ImagePanorama( "panoramas/Seventythree.jpg" );
+			Seventythree.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventythree.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventythree.addEventListener('click', function(e){
+			});
+
+var infospotSeventythree0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotSeventythree0.position.set( -3388.01, -3670.23, -34.59 );
+					Seventythree.add(infospotSeventythree0);
+infospotSeventythree0.addEventListener('click', function(){
+ChangePanorama('Seventyfour');
+});
+var infospotSeventythree1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSeventythree1.position.set( 482.86, -2906.97, -4035.01 );
+					Seventythree.add(infospotSeventythree1);
+infospotSeventythree1.addEventListener('click', function(){
+ChangePanorama('Seventyfive');
+});
+viewer.add( Seventythree );
+var Seventyfour = new PANOLENS.ImagePanorama( "panoramas/Seventyfour.jpg" );
+			Seventyfour.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventyfour.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventyfour.addEventListener('click', function(e){
+			});
+
+var infospotSeventyfour0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotSeventyfour0.position.set( 4522.10, -1942.05, 853.13 );
+					Seventyfour.add(infospotSeventyfour0);
+infospotSeventyfour0.addEventListener('click', function(){
+ChangePanorama('Seventythree');
+});
+viewer.add( Seventyfour );
+var Seventyfive = new PANOLENS.ImagePanorama( "panoramas/Seventyfive.jpg" );
+			Seventyfive.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventyfive.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventyfive.addEventListener('click', function(e){
+			});
+
+var infospotSeventyfive0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotSeventyfive0.position.set( -1931.84, -4567.35, 608.62 );
+					Seventyfive.add(infospotSeventyfive0);
+infospotSeventyfive0.addEventListener('click', function(){
+ChangePanorama('Eighty');
+});
+viewer.add( Seventyfive );
+var Seventysix = new PANOLENS.ImagePanorama( "panoramas/Seventysix.jpg" );
+			Seventysix.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventysix.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventysix.addEventListener('click', function(e){
+			});
+
+viewer.add( Seventysix );
+var Seventyseven = new PANOLENS.ImagePanorama( "panoramas/Seventyseven.jpg" );
+			Seventyseven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventyseven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventyseven.addEventListener('click', function(e){
+			});
+
+var infospotSeventyseven0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSeventyseven0.position.set( -4327.57, -2484.50, 139.38 );
+					Seventyseven.add(infospotSeventyseven0);
+infospotSeventyseven0.addEventListener('click', function(){
+ChangePanorama('Seventyeight');
+});
+viewer.add( Seventyseven );
+var Seventyeight = new PANOLENS.ImagePanorama( "panoramas/Seventyeight.jpg" );
+			Seventyeight.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventyeight.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventyeight.addEventListener('click', function(e){
+			});
+
+var infospotSeventyeight0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSeventyeight0.position.set( 83.71, -2157.38, -4502.54 );
+					Seventyeight.add(infospotSeventyeight0);
+infospotSeventyeight0.addEventListener('click', function(){
+ChangePanorama('Eightyeight');
+});
+viewer.add( Seventyeight );
+var Seventynine = new PANOLENS.ImagePanorama( "panoramas/Seventynine.jpg" );
+			Seventynine.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Seventynine.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Seventynine.addEventListener('click', function(e){
+			});
+
+var infospotSeventynine0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotSeventynine0.position.set( -232.62, -1997.45, 4568.47 );
+					Seventynine.add(infospotSeventynine0);
+infospotSeventynine0.addEventListener('click', function(){
+ChangePanorama('Seventyeight');
+});
+viewer.add( Seventynine );
+var Eighty = new PANOLENS.ImagePanorama( "panoramas/Eighty.jpg" );
+			Eighty.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eighty.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eighty.addEventListener('click', function(e){
+			});
+
+var infospotEighty0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEighty0.position.set( -1872.10, -2270.33, 4039.03 );
+					Eighty.add(infospotEighty0);
+infospotEighty0.addEventListener('click', function(){
+ChangePanorama('Eightyone');
+});
+var infospotEighty1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEighty1.position.set( 257.25, -2181.61, -4482.28 );
+					Eighty.add(infospotEighty1);
+infospotEighty1.addEventListener('click', function(){
+ChangePanorama('Seventynine');
+});
+var infospotEighty2 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEighty2.position.set( -4685.47, -1715.41, -133.05 );
+					Eighty.add(infospotEighty2);
+infospotEighty2.addEventListener('click', function(){
+ChangePanorama('Eightytwo');
+});
+viewer.add( Eighty );
+var Eightyone = new PANOLENS.ImagePanorama( "panoramas/Eightyone.jpg" );
+			Eightyone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eightyone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eightyone.addEventListener('click', function(e){
+			});
+
+var infospotEightyone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEightyone0.position.set( 1099.73, -2601.82, -4119.05 );
+					Eightyone.add(infospotEightyone0);
+infospotEightyone0.addEventListener('click', function(){
+ChangePanorama('Eighty');
+});
+viewer.add( Eightyone );
+var Eightytwo = new PANOLENS.ImagePanorama( "panoramas/Eightytwo.jpg" );
+			Eightytwo.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eightytwo.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eightytwo.addEventListener('click', function(e){
+			});
+
+var infospotEightytwo0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEightytwo0.position.set( 7.20, -1561.95, 4748.68 );
+					Eightytwo.add(infospotEightytwo0);
+infospotEightytwo0.addEventListener('click', function(){
+ChangePanorama('Eightythree');
+});
+viewer.add( Eightytwo );
+var Eightythree = new PANOLENS.ImagePanorama( "panoramas/Eightythree.jpg" );
+			Eightythree.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eightythree.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eightythree.addEventListener('click', function(e){
+			});
+
+var infospotEightythree0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEightythree0.position.set( -476.55, -1837.98, 4622.25 );
+					Eightythree.add(infospotEightythree0);
+infospotEightythree0.addEventListener('click', function(){
+ChangePanorama('Eightyfour');
+});
+viewer.add( Eightythree );
+var Eightyfour = new PANOLENS.ImagePanorama( "panoramas/Eightyfour.jpg" );
+			Eightyfour.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eightyfour.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eightyfour.addEventListener('click', function(e){
+			});
+
+var infospotEightyfour0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEightyfour0.position.set( 4378.85, -1950.07, 1416.25 );
+					Eightyfour.add(infospotEightyfour0);
+infospotEightyfour0.addEventListener('click', function(){
+ChangePanorama('Eightyfive');
+});
+viewer.add( Eightyfour );
+var Eightyfive = new PANOLENS.ImagePanorama( "panoramas/Eightyfive.jpg" );
+			Eightyfive.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eightyfive.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eightyfive.addEventListener('click', function(e){
+			});
+
+var infospotEightyfive0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEightyfive0.position.set( -206.76, -1026.58, 4878.99 );
+					Eightyfive.add(infospotEightyfive0);
+infospotEightyfive0.addEventListener('click', function(){
+ChangePanorama('Seventyeight');
+});
+viewer.add( Eightyfive );
+var Eightysix = new PANOLENS.ImagePanorama( "panoramas/Eightysix.jpg" );
+			Eightysix.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eightysix.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eightysix.addEventListener('click', function(e){
+			});
+
+viewer.add( Eightysix );
+var Eightyseven = new PANOLENS.ImagePanorama( "panoramas/Eightyseven.jpg" );
+			Eightyseven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eightyseven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eightyseven.addEventListener('click', function(e){
+			});
+
+viewer.add( Eightyseven );
+var Eightyeight = new PANOLENS.ImagePanorama( "panoramas/Eightyeight.jpg" );
+			Eightyeight.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eightyeight.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eightyeight.addEventListener('click', function(e){
+			});
+
+var infospotEightyeight0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEightyeight0.position.set( 107.54, -1861.17, 4633.04 );
+					Eightyeight.add(infospotEightyeight0);
+infospotEightyeight0.addEventListener('click', function(){
+ChangePanorama('Eightynine');
+});
+viewer.add( Eightyeight );
+var Eightynine = new PANOLENS.ImagePanorama( "panoramas/Eightynine.jpg" );
+			Eightynine.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Eightynine.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Eightynine.addEventListener('click', function(e){
+			});
+
+var infospotEightynine0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotEightynine0.position.set( 4528.87, -2083.46, -231.66 );
+					Eightynine.add(infospotEightynine0);
+infospotEightynine0.addEventListener('click', function(){
+ChangePanorama('Ninety');
+});
+viewer.add( Eightynine );
+var Ninety = new PANOLENS.ImagePanorama( "panoramas/Ninety.jpg" );
+			Ninety.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninety.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninety.addEventListener('click', function(e){
+			});
+
+var infospotNinety0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotNinety0.position.set( -61.67, -1204.54, -4848.09 );
+					Ninety.add(infospotNinety0);
+infospotNinety0.addEventListener('click', function(){
+ChangePanorama('Ninetyone');
+});
+viewer.add( Ninety );
+var Ninetyone = new PANOLENS.ImagePanorama( "panoramas/Ninetyone.jpg" );
+			Ninetyone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninetyone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninetyone.addEventListener('click', function(e){
+			});
+
+var infospotNinetyone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotNinetyone0.position.set( 4689.19, -1689.21, 246.52 );
+					Ninetyone.add(infospotNinetyone0);
+infospotNinetyone0.addEventListener('click', function(){
+ChangePanorama('Ninetytwo');
+});
+viewer.add( Ninetyone );
+var Ninetytwo = new PANOLENS.ImagePanorama( "panoramas/Ninetytwo.jpg" );
+			Ninetytwo.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninetytwo.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninetytwo.addEventListener('click', function(e){
+			});
+
+var infospotNinetytwo0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotNinetytwo0.position.set( 4711.96, -1646.92, -109.84 );
+					Ninetytwo.add(infospotNinetytwo0);
+infospotNinetytwo0.addEventListener('click', function(){
+ChangePanorama('Ninetythree');
+});
+viewer.add( Ninetytwo );
+var Ninetythree = new PANOLENS.ImagePanorama( "panoramas/Ninetythree.jpg" );
+			Ninetythree.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninetythree.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninetythree.addEventListener('click', function(e){
+			});
+
+var infospotNinetythree0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotNinetythree0.position.set( 4638.24, -1791.68, -490.83 );
+					Ninetythree.add(infospotNinetythree0);
+infospotNinetythree0.addEventListener('click', function(){
+ChangePanorama('Ninetyfour');
+});
+viewer.add( Ninetythree );
+var Ninetyfour = new PANOLENS.ImagePanorama( "panoramas/Ninetyfour.jpg" );
+			Ninetyfour.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninetyfour.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninetyfour.addEventListener('click', function(e){
+			});
+
+var infospotNinetyfour0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotNinetyfour0.position.set( 4681.10, -1736.89, 65.24 );
+					Ninetyfour.add(infospotNinetyfour0);
+infospotNinetyfour0.addEventListener('click', function(){
+ChangePanorama('Ninetyfive');
+});
+viewer.add( Ninetyfour );
+var Ninetyfive = new PANOLENS.ImagePanorama( "panoramas/Ninetyfive.jpg" );
+			Ninetyfive.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninetyfive.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninetyfive.addEventListener('click', function(e){
+			});
+
+var infospotNinetyfive0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotNinetyfive0.position.set( -4383.77, -2344.67, 494.39 );
+					Ninetyfive.add(infospotNinetyfive0);
+infospotNinetyfive0.addEventListener('click', function(){
+ChangePanorama('Onehundredone');
+});
+viewer.add( Ninetyfive );
+var Ninetysix = new PANOLENS.ImagePanorama( "panoramas/Ninetysix.jpg" );
+			Ninetysix.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninetysix.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninetysix.addEventListener('click', function(e){
+			});
+
+var infospotNinetysix0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotNinetysix0.position.set( -4712.18, -1619.85, -296.20 );
+					Ninetysix.add(infospotNinetysix0);
+infospotNinetysix0.addEventListener('click', function(){
+ChangePanorama('Seventyfive');
+});
+viewer.add( Ninetysix );
+var Ninetyseven = new PANOLENS.ImagePanorama( "panoramas/Ninetyseven.jpg" );
+			Ninetyseven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninetyseven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninetyseven.addEventListener('click', function(e){
+			});
+
+var infospotNinetyseven0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotNinetyseven0.position.set( -36.79, -1578.89, -4740.88 );
+					Ninetyseven.add(infospotNinetyseven0);
+infospotNinetyseven0.addEventListener('click', function(){
+ChangePanorama('Ninetysix');
+});
+viewer.add( Ninetyseven );
+var Ninetyeight = new PANOLENS.ImagePanorama( "panoramas/Ninetyeight.jpg" );
+			Ninetyeight.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninetyeight.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninetyeight.addEventListener('click', function(e){
+			});
+
+viewer.add( Ninetyeight );
+var Ninetynine = new PANOLENS.ImagePanorama( "panoramas/Ninetynine.jpg" );
+			Ninetynine.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ninetynine.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ninetynine.addEventListener('click', function(e){
+			});
+
+viewer.add( Ninetynine );
+var Onehundred = new PANOLENS.ImagePanorama( "panoramas/Onehundred.jpg" );
+			Onehundred.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Onehundred.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Onehundred.addEventListener('click', function(e){
+			});
+
+viewer.add( Onehundred );
+var Onehundredone = new PANOLENS.ImagePanorama( "panoramas/Onehundredone.jpg" );
+			Onehundredone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Onehundredone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Onehundredone.addEventListener('click', function(e){
+			});
+
+var infospotOnehundredone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotOnehundredone0.position.set( 405.92, -1308.30, -4800.79 );
+					Onehundredone.add(infospotOnehundredone0);
+infospotOnehundredone0.addEventListener('click', function(){
+ChangePanorama('Fiftynine');
+});
+var infospotOnehundredone1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotOnehundredone1.position.set( 3.10, -1826.02, 4651.48 );
+					Onehundredone.add(infospotOnehundredone1);
+infospotOnehundredone1.addEventListener('click', function(){
+ChangePanorama('Ninetyseven');
+});
+viewer.add( Onehundredone );
+var oneone = new PANOLENS.ImagePanorama( "panoramas/oneone.jpg" );
+			oneone.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			oneone.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			oneone.addEventListener('click', function(e){
+			});
+
+var infospotoneone0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotoneone0.position.set( 3853.14, -1175.89, 2952.85 );
+					oneone.add(infospotoneone0);
+infospotoneone0.addEventListener('click', function(){
+ChangePanorama('onetwo');
+});
+viewer.add( oneone );
+var onetwo = new PANOLENS.ImagePanorama( "panoramas/onetwo.jpg" );
+			onetwo.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			onetwo.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			onetwo.addEventListener('click', function(e){
+			});
+
+var infospotonetwo0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotonetwo0.position.set( 4544.21, -1959.43, -662.42 );
+					onetwo.add(infospotonetwo0);
+infospotonetwo0.addEventListener('click', function(){
+ChangePanorama('onethree');
+});
+viewer.add( onetwo );
+var onethree = new PANOLENS.ImagePanorama( "panoramas/onethree.jpg" );
+			onethree.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			onethree.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			onethree.addEventListener('click', function(e){
+			});
+
+var infospotonethree0 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
+					infospotonethree0.position.set( 4662.97, -1771.59, 166.99 );
+					onethree.add(infospotonethree0);
+infospotonethree0.addEventListener('click', function(){
+ChangePanorama('onefour');
+});
+viewer.add( onethree );
+var onefour = new PANOLENS.ImagePanorama( "panoramas/onefour.jpg" );
+			onefour.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			onefour.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			onefour.addEventListener('click', function(e){
+			});
+
+var infospotonefour0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotonefour0.position.set( 4475.36, -2162.70, 498.89 );
+					onefour.add(infospotonefour0);
+infospotonefour0.addEventListener('click', function(){
+ChangePanorama('onefive');
+});
+viewer.add( onefour );
+var onefive = new PANOLENS.ImagePanorama( "panoramas/onefive.jpg" );
+			onefive.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			onefive.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			onefive.addEventListener('click', function(e){
+			});
+
+var infospotonefive0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotonefive0.position.set( 4694.20, -1708.16, -17.52 );
+					onefive.add(infospotonefive0);
+infospotonefive0.addEventListener('click', function(){
+ChangePanorama('onesix');
+});
+viewer.add( onefive );
+var onesix = new PANOLENS.ImagePanorama( "panoramas/onesix.jpg" );
+			onesix.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			onesix.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			onesix.addEventListener('click', function(e){
+			});
+
+var infospotonesix0 = new PANOLENS.Infospot( 512, hotspotIcons[10].data, true );
+					infospotonesix0.position.set( 4358.97, -710.78, 2326.58 );
+					onesix.add(infospotonesix0);
+infospotonesix0.addEventListener('click', function(){
+ChangePanorama('oneseven');
+});
+viewer.add( onesix );
+var oneseven = new PANOLENS.ImagePanorama( "panoramas/oneseven.jpg" );
+			oneseven.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			oneseven.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			oneseven.addEventListener('click', function(e){
+			});
+
+var infospotoneseven0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotoneseven0.position.set( -4373.58, -2255.68, -867.86 );
+					oneseven.add(infospotoneseven0);
+infospotoneseven0.addEventListener('click', function(){
+ChangePanorama('one');
+});
+viewer.add( oneseven );
+$(document).ready(function(){ ChangePanorama('oneone'); });
+
+/*panoramas-end*/
+            
+			
+			function hideTemp(){
+				$("#tmp").fadeOut();
+				setTimeout(function(){
+					$("#tmpcontent").html("");
+				},1000);
+			}
+			
+			function showMedia(type, content){
+				switch(type){
+					case 1 :
+						//Image
+						$("#tmpcontent").html("<img src='"+content+"' style='width: 100%;'>");
+						$("#tmp").fadeIn();
+						break;
+					case 2 :
+						//Video
+						$("#tmpcontent").html("<video id='webvideo' controls autoplay style='width: 100%; height: 100%;'><source src='" +content+ "' type='video/mp4'> Your browser does not support the video tag. </video>");
+						$("#tmp").fadeIn();
+						break;
+					case 3 :
+						//Audio
+						$("#tmpcontent").html("<audio controls style='width: 100%;'><source src='"+content+"' type='audio/ogg'>Your browser does not support the audio tag.</audio>");
+						$("#tmp").fadeIn();
+						break;
+					case 4 :
+						//PDF
+						$("#tmpcontent").html("<iframe src='pdfjs/web/viewer.html?file=../../"+content+"' style='width: 100%; height: 99%;'></iframe>");
+						$("#tmp").fadeIn();
+						break;
+				}
+			}
+			
+			
+			
+			//Update Callback
+			viewer.addUpdateCallback(function(){
+				
+				/*viewerupdatecallback*/
+if(viewer.panorama == one){
+}
+
+if(viewer.panorama == two){
+}
+
+if(viewer.panorama == three){
+}
+
+if(viewer.panorama == four){
+}
+
+if(viewer.panorama == five){
+}
+
+if(viewer.panorama == six){
+}
+
+if(viewer.panorama == seven){
+}
+
+if(viewer.panorama == eight){
+}
+
+if(viewer.panorama == nine){
+}
+
+if(viewer.panorama == ten){
+}
+
+if(viewer.panorama == eleven){
+}
+
+if(viewer.panorama == twelve){
+}
+
+if(viewer.panorama == thirteen){
+}
+
+if(viewer.panorama == fourteen){
+}
+
+if(viewer.panorama == fifthteen){
+}
+
+if(viewer.panorama == sixteen){
+}
+
+if(viewer.panorama == seventeen){
+}
+
+if(viewer.panorama == eighteen){
+}
+
+if(viewer.panorama == nineteen){
+}
+
+if(viewer.panorama == twenty){
+}
+
+if(viewer.panorama == twentyone){
+}
+
+if(viewer.panorama == twentytwo){
+}
+
+if(viewer.panorama == Twentythree){
+}
+
+if(viewer.panorama == Twentyfour){
+}
+
+if(viewer.panorama == Twentyfive){
+}
+
+if(viewer.panorama == Twentysix){
+}
+
+if(viewer.panorama == Twentyseven){
+}
+
+if(viewer.panorama == Twentyeight){
+}
+
+if(viewer.panorama == Twentynine){
+}
+
+if(viewer.panorama == Thirty){
+}
+
+if(viewer.panorama == Thirtyone){
+}
+
+if(viewer.panorama == Thirtytwo){
+}
+
+if(viewer.panorama == Thirtythree){
+}
+
+if(viewer.panorama == Thirtyfour){
+}
+
+if(viewer.panorama == Thirtyfive){
+}
+
+if(viewer.panorama == Thirtysix){
+}
+
+if(viewer.panorama == Thirtyseven){
+}
+
+if(viewer.panorama == Thirtyeight){
+}
+
+if(viewer.panorama == Thirtynine){
+}
+
+if(viewer.panorama == Forty){
+}
+
+if(viewer.panorama == Fortyone){
+}
+
+if(viewer.panorama == Fortytwo){
+}
+
+if(viewer.panorama == Fortythree){
+}
+
+if(viewer.panorama == Fortyfour){
+}
+
+if(viewer.panorama == Fortyfive){
+}
+
+if(viewer.panorama == Fortysix){
+}
+
+if(viewer.panorama == Fortyseven){
+}
+
+if(viewer.panorama == Fortyeight){
+}
+
+if(viewer.panorama == Fortynine){
+}
+
+if(viewer.panorama == fifty){
+}
+
+if(viewer.panorama == Fiftyone){
+}
+
+if(viewer.panorama == Fiftytwo){
+}
+
+if(viewer.panorama == Fiftythree){
+}
+
+if(viewer.panorama == Fiftyfive){
+}
+
+if(viewer.panorama == Fiftysix){
+}
+
+if(viewer.panorama == Fiftyseven){
+}
+
+if(viewer.panorama == Fiftyeight){
+}
+
+if(viewer.panorama == Fiftynine){
+}
+
+if(viewer.panorama == Sixty){
+}
+
+if(viewer.panorama == Sixtyone){
+}
+
+if(viewer.panorama == Sixtytwo){
+}
+
+if(viewer.panorama == Sixtythree){
+}
+
+if(viewer.panorama == Sixtyfour){
+}
+
+if(viewer.panorama == Sixtyfive){
+}
+
+if(viewer.panorama == Sixtysix){
+}
+
+if(viewer.panorama == Sixtyseven){
+}
+
+if(viewer.panorama == Sixtyeight){
+}
+
+if(viewer.panorama == Sixtynine){
+}
+
+if(viewer.panorama == Seventy){
+}
+
+if(viewer.panorama == Seventyone){
+}
+
+if(viewer.panorama == Seventytwo){
+}
+
+if(viewer.panorama == Seventythree){
+}
+
+if(viewer.panorama == Seventyfour){
+}
+
+if(viewer.panorama == Seventyfive){
+}
+
+if(viewer.panorama == Seventysix){
+}
+
+if(viewer.panorama == Seventyseven){
+}
+
+if(viewer.panorama == Seventyeight){
+}
+
+if(viewer.panorama == Seventynine){
+}
+
+if(viewer.panorama == Eighty){
+}
+
+if(viewer.panorama == Eightyone){
+}
+
+if(viewer.panorama == Eightytwo){
+}
+
+if(viewer.panorama == Eightythree){
+}
+
+if(viewer.panorama == Eightyfour){
+}
+
+if(viewer.panorama == Eightyfive){
+}
+
+if(viewer.panorama == Eightysix){
+}
+
+if(viewer.panorama == Eightyseven){
+}
+
+if(viewer.panorama == Eightyeight){
+}
+
+if(viewer.panorama == Eightynine){
+}
+
+if(viewer.panorama == Ninety){
+}
+
+if(viewer.panorama == Ninetyone){
+}
+
+if(viewer.panorama == Ninetytwo){
+}
+
+if(viewer.panorama == Ninetythree){
+}
+
+if(viewer.panorama == Ninetyfour){
+}
+
+if(viewer.panorama == Ninetyfive){
+}
+
+if(viewer.panorama == Ninetysix){
+}
+
+if(viewer.panorama == Ninetyseven){
+}
+
+if(viewer.panorama == Ninetyeight){
+}
+
+if(viewer.panorama == Ninetynine){
+}
+
+if(viewer.panorama == Onehundred){
+}
+
+if(viewer.panorama == Onehundredone){
+}
+
+if(viewer.panorama == oneone){
+}
+
+if(viewer.panorama == onetwo){
+}
+
+if(viewer.panorama == onethree){
+}
+
+if(viewer.panorama == onefour){
+}
+
+if(viewer.panorama == onefive){
+}
+
+if(viewer.panorama == onesix){
+}
+
+if(viewer.panorama == oneseven){
+}
+/*viewerupdatecallback-end*/
+				
+				
+			});
+			
+			
+			
+			var hotspotsvisible = true;
+			function ShowMyInfospot(hs, elid){
+				var thehs = toScreenPosition(hs);
+				if(thehs.z < 1){
+					$("#" + elid).css({
+						"top" : (thehs.y - ($("#" + elid).height()/2)) + "px",
+						"left" : (thehs.x - ($("#" + elid).width()/2)) + "px",
+					});
+					if(hotspotsvisible)
+						$("#" + elid).show();
+				}else{
+					$("#" + elid).hide();
+				}
+				
+			}
+			
+			function toScreenPosition(obj)
+			{
+				var vector = new THREE.Vector3();
+				var widthHalf = 0.5 * innerWidth;
+				var heightHalf = 0.5 * innerHeight;
+				
+				//obj.updateMatrixWorld();				
+				vector.setFromMatrixPosition(obj.matrixWorld);
+				
+				
+				vector.project(viewer.camera);
+
+				vector.x = ( vector.x * widthHalf ) + widthHalf;
+				vector.y = - ( vector.y * heightHalf ) + heightHalf;
+
+				
+				return { 
+					x: vector.x,
+					y: vector.y,
+					z: vector.z,
+				};
+
+			};
+			
+			var currentPanorama;
+			function ChangePanorama(panorama){
+				currentPanorama = panorama;
+				HideInfospots(); 
+				$("#loading").fadeIn();
+				//$(".customhotspot").fadeOut();
+				setTimeout(function(){
+					viewer.setPanorama(window[panorama]);
+				}, 100);
+				setTimeout(function(){
+					$("#" + panorama).fadeIn();
+					$("#loading").fadeOut();
+				}, 1000);
+				
+			}
+			
+			
+			
+			function HideInfospots(){
+				$(".customhotspot").fadeOut();
+			}
+
+			/*customjs*//*customjs-end*/
+        </script>
+	</body>
+</html>tml>
